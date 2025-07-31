@@ -1,14 +1,13 @@
-package org.example.smartbar.backoffice;
+package org.example.smartbar.backoffice.tables;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
-import org.example.smartbar.backoffice.tables.Table;
-
-
+import org.example.smartbar.backoffice.CrudService;
 
 @ApplicationScoped
 public class TablesService extends CrudService<Table> {
+
 
     public TablesService() {
         // Just for CDI requirements
@@ -20,8 +19,9 @@ public class TablesService extends CrudService<Table> {
         super(entityManager);
     }
 
-    public org.example.smartbar.backoffice.api.model.ApiTable get() {
-        return new org.example.smartbar.backoffice.api.model.ApiTable().name("Berlin");
-    }
 
+    @Override
+    protected Class<Table> getEntityClass() {
+        return Table.class;
+    }
 }

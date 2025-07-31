@@ -4,12 +4,14 @@ import io.quarkus.test.InjectMock;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.example.smartbar.backoffice.CategoriesService;
-import org.example.smartbar.backoffice.api.model.Category;
+import org.example.smartbar.backoffice.categories.CategoriesService;
+import org.example.smartbar.backoffice.categories.Category;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
@@ -21,8 +23,11 @@ class CategoriesResourceTest {
 
     @BeforeEach
     void setUp() {
-        Mockito.when(categoriesServiceMock.get()).thenReturn(new Category().name("Mock"));
+        final Category category = new Category();
+        category.setName("Mock");
+        Mockito.when(categoriesServiceMock.listAll()).thenReturn(List.of(category));
     }
+
 
     @Test
     void getsListOfCategories() {
