@@ -10,7 +10,7 @@ public class SmartbarExceptionMapper implements ExceptionMapper<Exception> {
 
     @Override
     public Response toResponse(Exception exception) {
-        if(causedByConstaintViolation(exception)) {
+        if(causedByConstaintViolation(exception)) { // cause @UniqueConstraint on entity, while @NotNull is on the OpenApi 'required:"
             return Response.status(Response.Status.CONFLICT).build();
         }
         return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();

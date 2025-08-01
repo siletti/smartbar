@@ -191,6 +191,9 @@ components:
   schemas:
     apiCategory:
       type: object
+      required:
+        - name
+        - description
       properties:
         id:
           type: integer
@@ -201,6 +204,11 @@ components:
           type: string
     apiArticle:
       type: object
+      required:
+        - name
+        - price
+        - picture
+        - description
       properties:
         id:
           type: integer
@@ -215,14 +223,18 @@ components:
           type: string
     apiTable:
       type: object
+      required:
+        - name
+        - seatCount
+        - active
       properties:
         id:
           type: integer
           format: int64
         name:
-          type: string,
+          type: string
         seatCount:
-          type: integer,
+          type: integer
         active:
           type: boolean
     id:
